@@ -1,0 +1,28 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+{% if messages %}
+  {% for message in messages %}
+    <h6 class="alert alert-{{message.tags}} text-center">{{message}}</h6>
+  {% endfor %}
+{% endif %}
+<div class="card mx-auto my-5 shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 50%;">
+    <div class="card-header bg-light-subtle">
+        <h2 class="text-center text-primary">Login</h2>
+      </div>
+    <div class="card-body">
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        {% for fm in form %}
+            <p class="my-2">{{fm.label_tag}}</p>
+            {{fm}}
+            <small>{{fm.errors}}</small>
+        {% endfor %}
+        <input class="btn btn-primary my-3" type="submit" value="Login">
+        <a href="{% url 'register' %}" class="btn btn-success my-3">Register</a>
+    </form>
+    <a href="{% url 'password_reset' %}">Forgot Password</a>
+    </div>
+    
+    
+  </div>
+{% endblock content %}

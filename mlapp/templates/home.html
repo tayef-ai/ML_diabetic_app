@@ -1,0 +1,35 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+        {% if messages %}
+            {% for message in messages %}
+                <h3 class="alert alert-{{message.tags}} text-center">{{ message }}</h3>
+            {% endfor %}
+        {% endif %}
+        <div class="card shadow">
+            <div class="card-body mt-3">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row ">
+                        {% for fm in form_context %}
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-11 offset-1">
+                                        <div class="form-group mb-2">
+                                           <p> {{fm.label_tag}}{{fm}}</p>
+                                        </div>                
+                                    </div>
+                                </div>
+                            </div>
+                            {% if forloop.counter|divisibleby:2 %}
+                        </div>
+                        <div class="row">
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto my-3">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </form>
+            </div>
+          </div>        
+{% endblock content %}
